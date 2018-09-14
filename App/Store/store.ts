@@ -1,6 +1,6 @@
 import {applyMiddleware, createStore, Store} from 'redux';
-import {asyncDispatch, axios, logger} from '../middleware';
-import rootReducer, {RootState} from '../reducers';
+import {asyncDispatch, axios, logger} from '../Middleware';
+import rootReducer, {RootState} from '../Reducers';
 
 export function configureStore(initialState: RootState) {
     let middleware = applyMiddleware(axios, asyncDispatch, logger);

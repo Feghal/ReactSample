@@ -5,7 +5,7 @@ import {
   Image,
   StyleSheet
 } from 'react-native';
-import Photo from "../../../models/Photo";
+import Photo from "../../../Models/Photo";
 import {ListItemStyle} from "../../../Styles/style";
 
 namespace ListItem {

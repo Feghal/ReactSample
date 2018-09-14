@@ -7,10 +7,10 @@
  */
 
 import React from 'react'
-import {ListInitialState, RootState} from "./reducers";
-import {configureStore} from "./store/store";
+import {ListInitialState, RootState} from "./Reducers";
+import {configureStore} from "./Store/store";
 import {Provider} from 'react-redux';
-import {AppNavigation} from "./routers/MainRouter";
+import {AppNavigation} from "./Routers/MainRouter";
 
 const persistedState: RootState = {
     list: ListInitialState,

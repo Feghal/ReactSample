@@ -3,6 +3,9 @@ import {
   Button,
   View
 } from 'react-native';
+import {Keys} from "../../Constants/general";
+import {fetchWith} from "../../Settings/Storage";
+import Photo from "../../Models/Photo";
 
 namespace HomeScreen {
     export interface OwnProps {
@@ -42,12 +45,20 @@ export class HomeScreen extends React.Component<HomeScreen.Props, HomeScreen.Sta
             }
           />
           <Button
-              title="Go to list"
+              title="Go to Saved"
               onPress={() =>
-                  navigate('List', { name: 'List' })
+                this.navigateToDetail()
               }
           />
       </View>
     );
   }
+
+  navigateToDetail() {
+      fetchWith(Keys.note, result => {
+          console.log(result)
+      });
+      // navigate('saved', { name: 'Detail' , photo: photo})
+  }
+
 }

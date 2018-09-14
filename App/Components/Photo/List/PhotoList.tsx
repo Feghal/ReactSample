@@ -9,9 +9,9 @@ import {
 import { connect } from 'react-redux';
 import { listPhotos } from '../../../Actions/PhotoListActions';
 import { ListItem } from './ListItem';
-import Photo from "../../../models/Photo";
+import Photo from "../../../Models/Photo";
 import {ProgressStatus} from "../../../Constants/general";
-import {RootState} from "../../../reducers";
+import {RootState} from "../../../Reducers";
 import {Dispatch} from "redux";
 import {PhotoListStyle} from "../../../Styles/style"
 

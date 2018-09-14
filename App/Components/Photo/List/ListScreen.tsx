@@ -4,7 +4,7 @@ import {
   StyleSheet,
 } from 'react-native';
 import PhotoList  from './PhotoList'
-import Photo from "../../../models/Photo";
+import Photo from "../../../Models/Photo";
 
 namespace ListScreen {
     export interface OwnProps {

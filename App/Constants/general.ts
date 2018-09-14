@@ -10,5 +10,5 @@ export enum Errors {
 }
 
 export enum Keys {
-    note = "@MyStore:note"
+    note    = "@MyStore:note"
 }

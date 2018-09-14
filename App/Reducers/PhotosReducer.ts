@@ -1,6 +1,6 @@
 import {handleActions} from 'redux-actions';
 import {App} from '../Constants/actions'
-import Photo from "../models/Photo";
+import Photo from "../Models/Photo";
 import {ProgressStatus} from "../Constants/general";
 
 export interface ListStoreState {
