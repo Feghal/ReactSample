@@ -7,7 +7,7 @@
  */
 
 import React from 'react'
-import {ListInitialState, RootState} from "./reducers/index";
+import {ListInitialState, RootState} from "./reducers";
 import {configureStore} from "./store/store";
 import {Provider} from 'react-redux';
 import {AppNavigation} from "./routers/MainRouter";

@@ -12,6 +12,7 @@ import { ListItem } from './ListItem';
 import Photo from "../../../models/Photo";
 import {ProgressStatus} from "../../../Constants/general";
 import {RootState} from "../../../reducers";
+import {Dispatch} from "redux";
 
 namespace PhotoList {
   export interface OwnProps {
@@ -70,7 +71,6 @@ class PhotoList extends React.Component<PhotoList.Props, PhotoList.State> {
        </View>
      );
    }
-
  }
 
 
@@ -82,13 +82,13 @@ function mapStateToProps(state: RootState): PhotoList.StateProps {
     };
 }
 
-function mapDispatchToProps(dispatch: any): PhotoList.DispatchProps {
+function mapDispatchToProps(dispatch: Dispatch): PhotoList.DispatchProps {
     return {
       listPhotos: () => dispatch(listPhotos())
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PhotoList);
+export default connect<PhotoList.StateProps, PhotoList.DispatchProps, PhotoList.OwnProps>(mapStateToProps, mapDispatchToProps)(PhotoList);
 
 const styles = StyleSheet.create({
     container: {

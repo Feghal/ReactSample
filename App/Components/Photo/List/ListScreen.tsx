@@ -31,7 +31,7 @@ export class ListScreen extends React.Component<ListScreen.Props, ListScreen.Sta
           navigation: this.props.navigation,
       };
       return (
-        <PhotoList onPressRow={this.onPress.bind(this)}/>
+        <PhotoList onPressRow={(photo: Photo) => this.onPress(photo)}/>
     );
   }
 
