@@ -1,10 +1,14 @@
 import React from 'react'
 
 import {
-    StyleSheet, Text,
+    Button,
+    Image,
+    Text,
+    TextInput,
     View,
 } from 'react-native';
 import Photo from "../../../models/Photo";
+import {DetailScreenStyle} from "../../../Styles/style";
 
 namespace DetailScreen {
     export interface OwnProps {
@@ -26,14 +30,25 @@ export class DetailScreen extends React.Component<DetailScreen.Props, DetailScre
         title: 'Detail',
     };
     render() {
-        const { navigate } = this.props.navigation;
-        const photo = this.props.photo;
+        const { navigation } = this.props;
+        const photo = navigation.getParam('photo');
+        let pic = {
+            uri: photo.url
+        };
         return (
-            <View style={{flex:1}}>
-                <Text>2112121</Text>
+            <View style={DetailScreenStyle.container}>
+                <Text style={DetailScreenStyle.textView}>{photo.title}</Text>
+                <Image source={pic} style={DetailScreenStyle.imageView} />
+                <TextInput style={DetailScreenStyle.textInput}
+                           placeholder="Type here to the note!" />
+                <Button
+                    title="Save Note"
+                    onPress={() =>
+                        console.log(123)
+                    }
+                />
             </View>
         );
     }
+
 }
-
-

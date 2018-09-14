@@ -41,6 +41,12 @@ export class HomeScreen extends React.Component<HomeScreen.Props, HomeScreen.Sta
               navigate('List', { name: 'List' })
             }
           />
+          <Button
+              title="Go to list"
+              onPress={() =>
+                  navigate('List', { name: 'List' })
+              }
+          />
       </View>
     );
   }

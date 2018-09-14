@@ -8,3 +8,7 @@ export enum ProgressStatus {
 export enum Errors {
     required = "This field can't be blank",
 }
+
+export enum Keys {
+    note = "@MyStore:note"
+}

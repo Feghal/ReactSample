@@ -6,6 +6,7 @@ import {
   StyleSheet
 } from 'react-native';
 import Photo from "../../../models/Photo";
+import {ListItemStyle} from "../../../Styles/style";
 
 namespace ListItem {
     export interface OwnProps {
@@ -29,24 +30,9 @@ export class ListItem extends React.Component<ListItem.Props, ListItem.State> {
     };
     return (
       <View style={{flex:1, flexDirection: 'row'}}>
-        <Image source={pic} style={styles.imageView} />
-        <Text style={styles.textView}>{item.title}</Text>
+        <Image source={pic} style={ListItemStyle.imageView} />
+        <Text style={ListItemStyle.textView}>{item.title}</Text>
       </View>
     );
   }
 }
-
- const styles = StyleSheet.create({
-   imageView: {
-       width: '50%',
-       height: 100 ,
-       margin: 7,
-       borderRadius : 7
-   },
-   textView: {
-    width:'50%',
-    textAlignVertical:'center',
-    padding:10,
-    color: '#000'
-  }
- });

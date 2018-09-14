@@ -16,7 +16,6 @@ namespace ListScreen {
     export interface StateProps {}
 
     export interface State {
-        navigation: any
     }
 
     export type Props = OwnProps & DispatchProps & StateProps;
@@ -27,16 +26,13 @@ export class ListScreen extends React.Component<ListScreen.Props, ListScreen.Sta
     title: 'List',
   };
   render() {
-      this.state = {
-          navigation: this.props.navigation,
-      };
       return (
         <PhotoList onPressRow={(photo: Photo) => this.onPress(photo)}/>
     );
   }
 
   onPress(photo: Photo) {
-      const { navigate } = this.state.navigation;
+      const { navigate } = this.props.navigation;
       navigate('Detail', { name: 'Detail', photo: photo })
   }
 }

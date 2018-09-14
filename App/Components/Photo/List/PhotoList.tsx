@@ -13,6 +13,7 @@ import Photo from "../../../models/Photo";
 import {ProgressStatus} from "../../../Constants/general";
 import {RootState} from "../../../reducers";
 import {Dispatch} from "redux";
+import {PhotoListStyle} from "../../../Styles/style"
 
 namespace PhotoList {
   export interface OwnProps {
@@ -58,7 +59,7 @@ class PhotoList extends React.Component<PhotoList.Props, PhotoList.State> {
     }
       let storedPhotos = photos!.map(photo => ({ key: photo.id!.toString(), ...photo }));
       return(
-       <View style={styles.container}>
+       <View style={PhotoListStyle.container}>
          <FlatList
            data={storedPhotos!}
            renderItem={({item, index}) =>
@@ -89,10 +90,3 @@ function mapDispatchToProps(dispatch: Dispatch): PhotoList.DispatchProps {
 }
 
 export default connect<PhotoList.StateProps, PhotoList.DispatchProps, PhotoList.OwnProps>(mapStateToProps, mapDispatchToProps)(PhotoList);
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        paddingTop: 22
-    },
-});

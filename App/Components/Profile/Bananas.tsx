@@ -12,7 +12,6 @@ export class Bananas extends React.Component {
       <Image source={pic} style={
       {
         flex: 1,
-        // justifyContent: 'center',
         alignItems: 'center'
       }
     }/>
