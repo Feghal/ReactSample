@@ -16,6 +16,7 @@ import {Dispatch} from "redux";
 import {getPhoto} from "../../../Actions/PhotoActions";
 import {Loading} from "../../Shared/Loading";
 import {connect} from "react-redux";
+import {Error} from "../../Shared/Error"
 
 namespace PhotoDetail {
     export interface OwnProps {
@@ -31,6 +32,7 @@ namespace PhotoDetail {
     export interface StateProps {
         photoDetail?: Photo;
         detailStatus?: ProgressStatus;
+        detailErrors?: string;
     }
 
     export interface State {
@@ -48,36 +50,40 @@ class PhotoDetail extends React.Component<PhotoDetail.Props, PhotoDetail.State> 
     }
 
     render() {
-
-        const photoDetail = this.props.photoDetail;
-        const detailStatus = this.props.detailStatus;
-
-        if(detailStatus !== ProgressStatus.Success){
-            return(
-                <Loading/>
-            );
+        switch (this.props.detailStatus) {
+            case ProgressStatus.Failed:
+                console.log(123);
+                return(
+                    <Error error={this.props.detailErrors}/>
+                );
+            case ProgressStatus.Success:
+                const photoDetail = this.props.photoDetail;
+                let pic = {
+                    uri: photoDetail.url
+                };
+                const note = this.props.note;
+                let myRef = (component) => this._textInput = component;
+                return (
+                    <View style={DetailScreenStyle.container}>
+                        <Text style={DetailScreenStyle.textView}>{photoDetail.title}</Text>
+                        <Image source={pic} style={DetailScreenStyle.imageView} />
+                        <TextInput ref= {myRef}
+                                   style={DetailScreenStyle.textInput}
+                                   placeholder="Type here to the note!"
+                                   defaultValue={note}/>
+                        <Button
+                            title="Save Note"
+                            onPress={() =>
+                                this.savePhotoNote(photoDetail)
+                            }
+                        />
+                    </View>
+                );
+            default:
+                return(
+                    <Loading/>
+                );
         }
-        let pic = {
-            uri: photoDetail.url
-        };
-        const note = this.props.note;
-        let myRef = (component) => this._textInput = component;
-        return (
-            <View style={DetailScreenStyle.container}>
-                <Text style={DetailScreenStyle.textView}>{photoDetail.title}</Text>
-                <Image source={pic} style={DetailScreenStyle.imageView} />
-                <TextInput ref= {myRef}
-                           style={DetailScreenStyle.textInput}
-                           placeholder="Type here to the note!"
-                           defaultValue={note}/>
-                <Button
-                    title="Save Note"
-                    onPress={() =>
-                        this.savePhotoNote(photoDetail)
-                    }
-                />
-            </View>
-        );
     }
 
     savePhotoNote(photo: Photo) {
@@ -93,6 +99,7 @@ function mapStateToProps(state: RootState): PhotoDetail.StateProps {
     return {
         photoDetail: state.photo.photoDetail,
         detailStatus: state.photo.detailStatus,
+        detailErrors: state.photo.detailErrors,
     };
 }
 

@@ -47,3 +47,18 @@ export const PhotoListStyle = StyleSheet.create({
         paddingTop: 22
     },
 });
+
+export const Status = StyleSheet.create({
+    container: {
+        flex: 1,
+        padding: 20
+    },
+    errorTitle: {
+        fontWeight: 'bold',
+        textAlign: 'center',
+    },
+    errorMessage: {
+        textAlign: 'center',
+        padding: 20
+    }
+});

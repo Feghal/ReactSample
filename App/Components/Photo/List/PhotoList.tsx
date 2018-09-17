@@ -4,7 +4,7 @@ import {
     View,
     ActivityIndicator,
     StyleSheet,
-    TouchableOpacity,
+    TouchableOpacity, Text, Image, TextInput, Button,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { listPhotos } from '../../../Actions/PhotoActions';
@@ -13,8 +13,9 @@ import Photo from "../../../Models/Photo";
 import {ProgressStatus} from "../../../Constants/general";
 import {RootState} from "../../../Reducers";
 import {Dispatch} from "redux";
-import {PhotoListStyle} from "../../../Styles/style"
+import {DetailScreenStyle, PhotoListStyle} from "../../../Styles/style"
 import {Loading} from "../../Shared/Loading";
+import {Error} from "../../Shared/Error";
 
 namespace PhotoList {
   export interface OwnProps {
@@ -28,6 +29,7 @@ namespace PhotoList {
   export interface StateProps {
       photoList?: Array<Photo>;
       listStatus?: ProgressStatus;
+      listErrors?: string;
   }
 
   export interface State {
@@ -51,28 +53,32 @@ class PhotoList extends React.Component<PhotoList.Props, PhotoList.State> {
   }
 
   render(){
-    const photoList  = this.props.photoList;
-    const listStatus = this.props.listStatus;
-
-    if(listStatus !== ProgressStatus.Success){
-      return(
-          <Loading/>
-      );
-    }
-      let storedPhotos = photoList!.map(photo => ({ key: photo.id!.toString(), ...photo }));
-      return(
-       <View style={PhotoListStyle.container}>
-         <FlatList
-           data={storedPhotos!}
-           renderItem={({item, index}) =>
-               <TouchableOpacity onPress={ () => this.props.onPressRow(item)}>
-                    <ListItem item={item}/>
-               </TouchableOpacity>
-           }
-           keyExtractor={(item) => item.key}
-         />
-       </View>
-     );
+      switch (this.props.listStatus) {
+          case ProgressStatus.Failed:
+              return(
+                  <Error error={this.props.listErrors}/>
+              );
+          case ProgressStatus.Success:
+              const photoList  = this.props.photoList;
+              let storedPhotos = photoList!.map(photo => ({ key: photo.id!.toString(), ...photo }));
+              return(
+                  <View style={PhotoListStyle.container}>
+                      <FlatList
+                          data={storedPhotos!}
+                          renderItem={({item, index}) =>
+                              <TouchableOpacity onPress={ () => this.props.onPressRow(item)}>
+                                  <ListItem item={item}/>
+                              </TouchableOpacity>
+                          }
+                          keyExtractor={(item) => item.key}
+                      />
+                  </View>
+              );
+          default:
+              return(
+                  <Loading/>
+              );
+      }
    }
  }
 
@@ -82,6 +88,7 @@ function mapStateToProps(state: RootState): PhotoList.StateProps {
     return {
         photoList: state.photo.photoList,
         listStatus: state.photo.listStatus,
+        listErrors: state.photo.listErrors,
     };
 }
 

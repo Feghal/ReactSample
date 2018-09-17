@@ -3,11 +3,12 @@ import {
     View
 } from "react-native";
 import React from "react";
+import {Status} from "../../Styles/style";
 
 export class Loading extends React.Component {
     render() {
         return (
-            <View style={{flex: 1, padding: 20}}>
+            <View style={Status.container}>
                 <ActivityIndicator/>
             </View>
         );

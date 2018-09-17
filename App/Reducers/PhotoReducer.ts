@@ -9,7 +9,7 @@ export interface PhotoStoreState {
     listStatus?: ProgressStatus;
 
     photoDetail?: Photo;
-    DetailErrors?: string;
+    detailErrors?: string;
     detailStatus?: ProgressStatus;
 }
 
@@ -34,10 +34,10 @@ export default handleActions<PhotoStoreState, any>({
     },
 
     [App.Photo.List.Fail]: (state: PhotoStoreState, action: any) => {
-        console.log("reducer:", action.error.response.data.reason);
+        // console.log("reducer:", action.error.response.data.reason);
         return {
             listStatus: ProgressStatus.Failed,
-            listErrors: action.error.response.data.reason,
+            listErrors: action.error.data,
         };
     },
     [App.Photo.Detail.Request]: (state, action) => {
@@ -58,10 +58,12 @@ export default handleActions<PhotoStoreState, any>({
     },
 
     [App.Photo.Detail.Fail]: (state: PhotoStoreState, action: any) => {
-        console.log("reducer:", action.error.response.data.reason);
+        // console.log("reducer:", action.error.response.data.reason);
         return {
+            listStatus: state.listStatus,
+            photoList: state.photoList,
             detailStatus: ProgressStatus.Failed,
-            DetailErrors: action.error.response.data.reason,
+            detailErrors: action.error.data,
         };
     },
 

@@ -17,12 +17,10 @@ namespace ListItem {
 
     export interface StateProps {}
 
-    export interface State {}
-
     export type Props = OwnProps & DispatchProps & StateProps;
 }
 
-export class ListItem extends React.Component<ListItem.Props, ListItem.State> {
+export class ListItem extends React.Component<ListItem.Props> {
   render() {
     const item = this.props.item;
     let pic = {
