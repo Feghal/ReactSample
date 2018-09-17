@@ -1,21 +1,15 @@
 import React from 'react'
 
 import {
-    Button,
-    Image,
-    Text,
-    TextInput,
-    View,
+    StyleSheet,
 } from 'react-native';
 import Photo from "../../../Models/Photo";
-import {DetailScreenStyle} from "../../../Styles/style";
-import {storeWith} from "../../../Settings/Storage";
-import {Keys} from "../../../Constants/general";
+import PhotoDetail from "./PhotoDetail";
 
 namespace DetailScreen {
     export interface OwnProps {
         navigation: any
-        photo: Photo
+        id: number
     }
 
     export interface DispatchProps {}
@@ -31,35 +25,19 @@ export class DetailScreen extends React.Component<DetailScreen.Props, DetailScre
     static navigationOptions = {
         title: 'Detail',
     };
-
-    _textInput;
-
     render() {
-        const { navigation } = this.props;
-        const photo = navigation.getParam('photo');
-        let pic = {
-            uri: photo.url
-        };
-        let myRef = (component) => this._textInput = component;
+        const navigation = this.props.navigation;
+
+        const id = navigation.getParam('id');
+        const note = navigation.getParam('note');
         return (
-            <View style={DetailScreenStyle.container}>
-                <Text style={DetailScreenStyle.textView}>{photo.title}</Text>
-                <Image source={pic} style={DetailScreenStyle.imageView} />
-                <TextInput ref= {myRef}
-                           style={DetailScreenStyle.textInput}
-                           placeholder="Type here to the note!"/>
-                <Button
-                    title="Save Note"
-                    onPress={() =>
-                        this.savePhotoNote(photo)
-                    }
-                />
-            </View>
+            <PhotoDetail id={id} note={note}/>
         );
     }
 
-    savePhotoNote(photo: Photo) {
-        const text = this._textInput._lastNativeText;
-        storeWith(Keys.note, {id: photo.id, note: text});
+    onPress(photo: Photo) {
+        const { navigate } = this.props.navigation;
+        navigate('Detail', { name: 'Detail', id: photo.id })
     }
 }
+

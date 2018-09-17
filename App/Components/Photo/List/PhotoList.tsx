@@ -7,13 +7,14 @@ import {
     TouchableOpacity,
 } from 'react-native';
 import { connect } from 'react-redux';
-import { listPhotos } from '../../../Actions/PhotoListActions';
+import { listPhotos } from '../../../Actions/PhotoActions';
 import { ListItem } from './ListItem';
 import Photo from "../../../Models/Photo";
 import {ProgressStatus} from "../../../Constants/general";
 import {RootState} from "../../../Reducers";
 import {Dispatch} from "redux";
 import {PhotoListStyle} from "../../../Styles/style"
+import {Loading} from "../../Shared/Loading";
 
 namespace PhotoList {
   export interface OwnProps {
@@ -25,12 +26,11 @@ namespace PhotoList {
   }
 
   export interface StateProps {
-      photos?: Array<Photo>;
-      status?: ProgressStatus;
+      photoList?: Array<Photo>;
+      listStatus?: ProgressStatus;
   }
 
   export interface State {
-    isLoading: boolean;
   }
 
   export type Props = OwnProps & DispatchProps & StateProps;
@@ -42,22 +42,24 @@ class PhotoList extends React.Component<PhotoList.Props, PhotoList.State> {
     super(props);
   }
 
+  componentWillReceiveProps(nextProps: PhotoList.Props) {
+      console.log(nextProps.listPhotos);
+  }
+
   componentWillMount(){
       this.props.listPhotos();
   }
 
   render(){
-    const photos  = this.props.photos;
-    const status = this.props.status;
+    const photoList  = this.props.photoList;
+    const listStatus = this.props.listStatus;
 
-    if(status !== ProgressStatus.Success){
+    if(listStatus !== ProgressStatus.Success){
       return(
-        <View style={{flex: 1, padding: 20}}>
-          <ActivityIndicator/>
-        </View>
+          <Loading/>
       );
     }
-      let storedPhotos = photos!.map(photo => ({ key: photo.id!.toString(), ...photo }));
+      let storedPhotos = photoList!.map(photo => ({ key: photo.id!.toString(), ...photo }));
       return(
        <View style={PhotoListStyle.container}>
          <FlatList
@@ -78,8 +80,8 @@ class PhotoList extends React.Component<PhotoList.Props, PhotoList.State> {
 
 function mapStateToProps(state: RootState): PhotoList.StateProps {
     return {
-        photos: state.list.photos,
-        status: state.list.status,
+        photoList: state.photo.photoList,
+        listStatus: state.photo.listStatus,
     };
 }
 

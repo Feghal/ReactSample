@@ -1,12 +1,12 @@
 import { combineReducers } from "redux";
-import list, { ListStoreState, initialState } from './PhotosReducer';
+import photo, { PhotoStoreState, initialState } from './PhotoReducer';
 
 export interface RootState {
-    list: ListStoreState;
+    photo: PhotoStoreState;
 }
 
-export const ListInitialState = initialState;
+export const PhotoInitialState = initialState;
 
 export default combineReducers<RootState>({
-    list,
+    photo,
 });

@@ -7,13 +7,13 @@
  */
 
 import React from 'react'
-import {ListInitialState, RootState} from "./Reducers";
+import {PhotoInitialState, RootState} from "./Reducers";
 import {configureStore} from "./Store/store";
 import {Provider} from 'react-redux';
 import {AppNavigation} from "./Routers/MainRouter";
 
 const persistedState: RootState = {
-    list: ListInitialState,
+    photo: PhotoInitialState,
 };
 
 const store = configureStore(persistedState);

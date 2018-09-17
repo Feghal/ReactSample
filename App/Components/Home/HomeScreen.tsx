@@ -27,8 +27,8 @@ export class HomeScreen extends React.Component<HomeScreen.Props, HomeScreen.Sta
     title: 'Welcome',
   };
   render() {
-    const { navigate } = this.props.navigation;
-    return (
+      const { navigate } = this.props.navigation;
+      return (
       <View style={{flex: 1,
          flexDirection: 'column'
        }}>
@@ -55,10 +55,11 @@ export class HomeScreen extends React.Component<HomeScreen.Props, HomeScreen.Sta
   }
 
   navigateToDetail() {
+      const { navigate } = this.props.navigation;
+      console.log(navigate);
       fetchWith(Keys.note, result => {
-          console.log(result)
+          navigate('Detail', { name: 'Detail' , id: result['id'], note: result['note']})
       });
-      // navigate('saved', { name: 'Detail' , photo: photo})
   }
 
 }
