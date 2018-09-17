@@ -31,13 +31,8 @@ export class DetailScreen extends React.Component<DetailScreen.Props, DetailScre
         const id = navigation.getParam('id');
         const note = navigation.getParam('note');
         return (
-            <PhotoDetail id={id} note={note}/>
+            <PhotoDetail navigation={navigation} id={id} note={note}/>
         );
-    }
-
-    onPress(photo: Photo) {
-        const { navigate } = this.props.navigation;
-        navigate('Detail', { name: 'Detail', id: photo.id })
     }
 }
 

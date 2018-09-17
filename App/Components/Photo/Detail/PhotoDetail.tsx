@@ -19,6 +19,7 @@ import {connect} from "react-redux";
 
 namespace PhotoDetail {
     export interface OwnProps {
+        navigation: any,
         id: number
         note?: string
     }
@@ -47,6 +48,7 @@ class PhotoDetail extends React.Component<PhotoDetail.Props, PhotoDetail.State> 
     }
 
     render() {
+
         const photoDetail = this.props.photoDetail;
         const detailStatus = this.props.detailStatus;
 
@@ -79,8 +81,11 @@ class PhotoDetail extends React.Component<PhotoDetail.Props, PhotoDetail.State> 
     }
 
     savePhotoNote(photo: Photo) {
+        const { goBack } = this.props.navigation;
+
         const text = this._textInput._lastNativeText;
         storeWith(Keys.note, {id: photo.id, note: text});
+        goBack();
     }
 }
 
