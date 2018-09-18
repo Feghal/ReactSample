@@ -23,7 +23,7 @@ export const DetailScreenStyle = StyleSheet.create({
     textInput: {
         marginBottom:60,
         height: 40,
-        width:'60%',
+        width: '60%',
     }
 });
 

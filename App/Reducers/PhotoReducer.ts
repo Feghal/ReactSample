@@ -21,51 +21,42 @@ export const initialState: PhotoStoreState = {
 
 export default handleActions<PhotoStoreState, any>({
     [App.Photo.List.Request]: (state, action) => {
-        return {
+        return Object.assign({}, state, {
             listStatus: ProgressStatus.Loading
-        };
+        });
     },
 
     [App.Photo.List.Success]: (state: PhotoStoreState, action: any) => {
-        return {
+        return Object.assign({}, state, {
             listStatus: ProgressStatus.Success,
             photoList: action.payload.data
-        };
+        });
     },
 
     [App.Photo.List.Fail]: (state: PhotoStoreState, action: any) => {
-        // console.log("reducer:", action.error.response.data.reason);
-        return {
-            listStatus: ProgressStatus.Failed,
+        return Object.assign({}, state, {
             listErrors: action.error.data,
-        };
+        });
     },
+
     [App.Photo.Detail.Request]: (state, action) => {
-        return {
-            listStatus: state.listStatus,
-            photoList: state.photoList,
+        return Object.assign({}, state, {
             detailStatus: ProgressStatus.Loading
-        };
+        });
     },
 
     [App.Photo.Detail.Success]: (state: PhotoStoreState, action: any) => {
-        return {
-            listStatus: state.listStatus,
-            photoList: state.photoList,
+        return Object.assign({}, state, {
             detailStatus: ProgressStatus.Success,
             photoDetail: action.payload.data
-        };
+        });
     },
 
     [App.Photo.Detail.Fail]: (state: PhotoStoreState, action: any) => {
-        // console.log("reducer:", action.error.response.data.reason);
-        return {
-            listStatus: state.listStatus,
-            photoList: state.photoList,
+        return Object.assign({}, state, {
             detailStatus: ProgressStatus.Failed,
             detailErrors: action.error.data,
-        };
+        });
     },
-
 }, initialState);
 
