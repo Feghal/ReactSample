@@ -47,6 +47,22 @@ class PhotoDetail extends React.Component<PhotoDetail.Props, PhotoDetail.State> 
 
     componentDidMount() {
         this.props.getPhoto(this.props.id.toString());
+
+        this.testPromise("test").then((data: string) => {
+            console.log('passed');
+        }).catch((error: any) => {
+            console.log('cached');
+        });
+    }
+
+    testPromise(id: string): Promise<string> {
+        return new Promise<string>((resolve: (data: string) => void, reject) => {
+            if (id === 'test') {
+                resolve("Test");
+            } else {
+                reject("id is not test");
+            }
+        });
     }
 
     render() {

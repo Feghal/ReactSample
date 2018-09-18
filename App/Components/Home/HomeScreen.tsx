@@ -47,7 +47,7 @@ export class HomeScreen extends React.Component<HomeScreen.Props, HomeScreen.Sta
           <Button
               title="Go to Saved"
               onPress={() =>
-                this.navigateToDetail()
+                  this.navigateToDetail()
               }
           />
       </View>
