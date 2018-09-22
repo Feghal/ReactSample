@@ -1,15 +1,17 @@
 import React from 'react';
+import {Component} from 'react';
+
 import {
   Button,
   View
 } from 'react-native';
 import {Keys} from "../../Constants/general";
 import {fetchWith} from "../../Settings/Storage";
-import Photo from "../../Models/Photo";
+
 
 namespace HomeScreen {
     export interface OwnProps {
-        navigation: any
+        navigation: any;
     }
 
     export interface DispatchProps {}
@@ -22,7 +24,7 @@ namespace HomeScreen {
 }
 
 
-export class HomeScreen extends React.Component<HomeScreen.Props, HomeScreen.State> {
+export class HomeScreen extends Component<HomeScreen.Props, HomeScreen.State> {
   static navigationOptions = {
     title: 'Welcome',
   };
@@ -58,7 +60,9 @@ export class HomeScreen extends React.Component<HomeScreen.Props, HomeScreen.Sta
       const { navigate } = this.props.navigation;
       console.log(navigate);
       fetchWith(Keys.note, result => {
-          navigate('Detail', { name: 'Detail' , id: result['id'], note: result['note']})
+          if (result['id'] !== undefined) {
+              navigate('Detail', {name: 'Detail', id: result['id'], note: result['note']})
+          }
       });
   }
 

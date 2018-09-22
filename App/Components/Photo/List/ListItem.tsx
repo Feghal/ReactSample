@@ -1,9 +1,9 @@
 import React from 'react'
+import {Component} from 'react';
 import {
   Text,
   View,
-  Image,
-  StyleSheet
+  Image
 } from 'react-native';
 import Photo from "../../../Models/Photo";
 import {ListItemStyle} from "../../../Styles/style";
@@ -20,7 +20,7 @@ namespace ListItem {
     export type Props = OwnProps & DispatchProps & StateProps;
 }
 
-export class ListItem extends React.Component<ListItem.Props> {
+export class ListItem extends Component<ListItem.Props> {
   render() {
     const item = this.props.item;
     let pic = {

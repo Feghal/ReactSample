@@ -7,6 +7,7 @@
  */
 
 import React from 'react'
+import {Component} from 'react';
 import {PhotoInitialState, RootState} from "./Reducers";
 import {configureStore} from "./Store/store";
 import {Provider} from 'react-redux';
@@ -18,7 +19,7 @@ const persistedState: RootState = {
 
 const store = configureStore(persistedState);
 
-class App extends React.Component {
+class App extends Component {
     render() {
         return(
             <Provider store={store}>

@@ -1,8 +1,6 @@
 import React from 'react'
+import {Component} from 'react';
 
-import {
-  StyleSheet,
-} from 'react-native';
 import PhotoList  from './PhotoList'
 import Photo from "../../../Models/Photo";
 
@@ -20,7 +18,7 @@ namespace ListScreen {
     export type Props = OwnProps & DispatchProps & StateProps;
 }
 
-export class ListScreen extends React.Component<ListScreen.Props, ListScreen.State> {
+export class ListScreen extends Component<ListScreen.Props, ListScreen.State> {
   static navigationOptions = {
     title: 'List',
   };

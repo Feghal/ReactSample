@@ -1,5 +1,5 @@
 import React from 'react'
-
+import {Component} from 'react';
 import {
     Button,
     Image,
@@ -42,7 +42,7 @@ namespace PhotoDetail {
     export type Props = OwnProps & DispatchProps & StateProps;
 }
 
-class PhotoDetail extends React.Component<PhotoDetail.Props, PhotoDetail.State> {
+class PhotoDetail extends Component<PhotoDetail.Props, PhotoDetail.State> {
     _textInput;
 
     componentDidMount() {

@@ -1,11 +1,12 @@
+import React from 'react';
+import {Component} from 'react';
 import {
     ActivityIndicator,
     View
 } from "react-native";
-import React from "react";
 import {Status} from "../../Styles/style";
 
-export class Loading extends React.Component {
+export class Loading extends Component {
     render() {
         return (
             <View style={Status.container}>

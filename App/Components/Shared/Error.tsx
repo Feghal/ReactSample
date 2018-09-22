@@ -2,8 +2,9 @@ import {
     Text,
     View
 } from "react-native";
+import {Component} from 'react';
 import React from "react";
-import {DetailScreenStyle, Status} from "../../Styles/style";
+import {Status} from "../../Styles/style";
 
 namespace Error {
     export interface OwnProps {
@@ -18,7 +19,7 @@ namespace Error {
 }
 
 
-export class Error extends React.Component<Error.Props> {
+export class Error extends Component<Error.Props> {
     render() {
         const error = this.props.error;
         return (

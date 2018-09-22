@@ -6,7 +6,7 @@ import {ListScreen} from "../Components/Photo/List/ListScreen";
 import {DetailScreen} from "../Components/Photo/Detail/DetailScreen";
 
 export const AppNavigation = createStackNavigator({
-    Home: { screen: HomeScreen },
+    Home: { screen: HomeScreen},
     Profile: { screen: ProfileScreen },
     List: { screen: ListScreen },
     Detail: {screen: DetailScreen}

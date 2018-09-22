@@ -1,4 +1,5 @@
 import React from 'react'
+import {Component} from 'react';
 import { Bananas } from './Bananas'
 
 namespace ProfileScreen {
@@ -16,7 +17,7 @@ namespace ProfileScreen {
 }
 
 
-export class ProfileScreen extends React.Component<ProfileScreen.Props, ProfileScreen.State> {
+export class ProfileScreen extends Component<ProfileScreen.Props, ProfileScreen.State> {
   static navigationOptions = {
     title: 'Profile',
   };

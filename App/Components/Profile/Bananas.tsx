@@ -1,9 +1,10 @@
 import React from 'react'
+import {Component} from 'react'
 import {
   Image,
 } from 'react-native';
 
-export class Bananas extends React.Component {
+export class Bananas extends Component {
   render() {
     let pic = {
       uri: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg'

@@ -1,10 +1,9 @@
 import React from 'react'
+import {Component} from 'react';
 import {
     FlatList,
     View,
-    ActivityIndicator,
-    StyleSheet,
-    TouchableOpacity, Text, Image, TextInput, Button,
+    TouchableOpacity
 } from 'react-native';
 import { connect } from 'react-redux';
 import { listPhotos } from '../../../Actions/PhotoActions';
@@ -13,7 +12,7 @@ import Photo from "../../../Models/Photo";
 import {ProgressStatus} from "../../../Constants/general";
 import {RootState} from "../../../Reducers";
 import {Dispatch} from "redux";
-import {DetailScreenStyle, PhotoListStyle} from "../../../Styles/style"
+import {PhotoListStyle} from "../../../Styles/style"
 import {Loading} from "../../Shared/Loading";
 import {Error} from "../../Shared/Error";
 
@@ -38,7 +37,7 @@ namespace PhotoList {
   export type Props = OwnProps & DispatchProps & StateProps;
 }
 
-class PhotoList extends React.Component<PhotoList.Props, PhotoList.State> {
+class PhotoList extends Component<PhotoList.Props, PhotoList.State> {
 
   constructor(props: PhotoList.Props){
     super(props);

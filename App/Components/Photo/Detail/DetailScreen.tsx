@@ -1,9 +1,6 @@
 import React from 'react'
+import {Component} from 'react';
 
-import {
-    StyleSheet,
-} from 'react-native';
-import Photo from "../../../Models/Photo";
 import PhotoDetail from "./PhotoDetail";
 
 namespace DetailScreen {
@@ -21,7 +18,7 @@ namespace DetailScreen {
     export type Props = OwnProps & DispatchProps & StateProps;
 }
 
-export class DetailScreen extends React.Component<DetailScreen.Props, DetailScreen.State> {
+export class DetailScreen extends Component<DetailScreen.Props, DetailScreen.State> {
     static navigationOptions = {
         title: 'Detail',
     };
