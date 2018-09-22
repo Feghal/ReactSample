@@ -52,6 +52,12 @@ export class HomeScreen extends Component<HomeScreen.Props, HomeScreen.State> {
                   this.navigateToDetail()
               }
           />
+          <Button
+              title="See Platform"
+              onPress={() =>
+                  navigate('Platform', { name: 'Platform' })
+              }
+          />
       </View>
     );
   }
